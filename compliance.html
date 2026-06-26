@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol - DriveLegal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .layout-grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; }
+        .doc-item { padding: 18px 20px; border-radius: 4px; border: 1px solid rgba(0,240,255,0.2); background: rgba(0,0,0,0.5); margin-bottom: 16px; transition: 0.3s; }
+        .doc-item.valid { border-color: #4ade80; background: rgba(74,222,128,0.1); box-shadow: 0 0 10px rgba(74,222,128,0.2) inset;}
+        .doc-item.invalid { border-color: #f87171; background: rgba(239,68,68,0.1); box-shadow: 0 0 10px rgba(239,68,68,0.2) inset;}
+        .doc-btn { padding: 6px 12px; border-radius: 2px; font-size: 13px; font-weight: 700; cursor: pointer; border: 1px solid; background: transparent; transition: 0.2s; font-family: 'Orbitron', sans-serif;}
+        
+        @media (max-width: 768px) {
+            .layout-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-bg"></div>
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <span><i data-feather="crosshair"></i></span>
+            Drive<span class="gradient-text">Legal</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Nexus</a>
+            <a href="ask.html">AI Interface</a>
+            <a href="challan.html">Penalty Calc</a>
+            <a href="rights.html">Citizen Rights</a>
+            <a href="compliance.html" class="active">Protocol</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="text-center mb-8">
+                <div class="badge badge-green mb-4" style="box-shadow: 0 0 10px rgba(74,222,128,0.5);">
+                    <i data-feather="check-square" style="width: 12px;"></i> SYSTEM COMPLIANCE
+                </div>
+                <h1 class="glitch-text mb-2" data-text="VERIFY YOUR" style="color: #fff;">VERIFY YOUR <span class="gradient-text">PROTOCOL</span></h1>
+                <p style="color: var(--text-secondary); font-size: 14px; max-width: 600px; margin: 0 auto; font-family: 'Orbitron', sans-serif;">
+                    ENSURE ALL VEHICLE DOCUMENTS ARE ACTIVE TO AVOID PENALTIES.
+                </p>
+            </div>
+
+            <div class="layout-grid">
+                <!-- Document List -->
+                <div>
+                    <div class="anime-panel">
+                        <h3 class="flex align-center gap-4 mb-4 cyber-font" style="font-size: 18px; color: var(--accent-cyan);"><i data-feather="file" style="color: var(--accent-cyan);"></i> DOCUMENT SCANNER</h3>
+                        
+                        <div id="docsList">
+                            <!-- Populated by JS -->
+                        </div>
+                        
+                        <button class="cyber-button btn-pink" onclick="calculateScore()" style="width: 100%; justify-content: center; margin-top: 10px;">
+                            <i data-feather="shield" style="width: 16px;"></i> INITIATE DIAGNOSTIC
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Score Board -->
+                <div>
+                    <div id="scoreCard" class="anime-panel text-center mb-4" style="display: none;">
+                        <div id="scoreIcon" style="margin-bottom: 16px;"></div>
+                        <div id="scoreValue" style="font-size: 56px; font-weight: 900; font-family: 'Orbitron', sans-serif; color: #fff;">0%</div>
+                        <p style="color: var(--text-secondary); font-size: 12px; margin-top: 8px; font-family: 'Orbitron', sans-serif;">COMPLIANCE SCORE</p>
+                        <p id="scoreText" style="margin-top: 8px; font-size: 11px; color: var(--text-muted); font-family: 'Orbitron', sans-serif;"></p>
+                    </div>
+
+                    <div class="anime-panel">
+                        <h4 class="cyber-font" style="margin-bottom: 12px; font-size: 15px; color: var(--accent-yellow);">💡 DATABANK TIPS</h4>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                            <li style="font-size: 12px; color: var(--text-secondary); display: flex; gap: 8px; font-family: 'Orbitron', sans-serif;">
+                                <span style="color: var(--accent-yellow);">→</span> KEEP DIGITAL COPIES SECURE
+                            </li>
+                            <li style="font-size: 12px; color: var(--text-secondary); display: flex; gap: 8px; font-family: 'Orbitron', sans-serif;">
+                                <span style="color: var(--accent-yellow);">→</span> RENEW PUC BIANNUALLY
+                            </li>
+                            <li style="font-size: 12px; color: var(--text-secondary); display: flex; gap: 8px; font-family: 'Orbitron', sans-serif;">
+                                <span style="color: var(--accent-yellow);">→</span> INSURANCE IS MANDATORY
+                            </li>
+                            <li style="font-size: 12px; color: var(--text-secondary); display: flex; gap: 8px; font-family: 'Orbitron', sans-serif;">
+                                <span style="color: var(--accent-yellow);">→</span> SET REMINDERS 30 DAYS PRIOR
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/compliance.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

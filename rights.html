@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Rights - DriveLegal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .right-card { background: rgba(10,10,20,0.6); border: 1px solid var(--accent-cyan); padding: 24px; border-radius: 4px; transition: transform 0.3s; position: relative; overflow: hidden; box-shadow: 0 0 10px rgba(0,240,255,0.1) inset;}
+        .right-card:hover { transform: translateY(-5px); border-color: var(--accent-pink); box-shadow: 0 0 20px rgba(255,42,133,0.3) inset;}
+        .right-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,42,133,0.2), transparent); animation: scan 4s linear infinite; pointer-events: none; opacity: 0; transition: 0.3s; }
+        .right-card:hover::before { opacity: 1; }
+        .icon-box { width: 48px; height: 48px; border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-family: 'Orbitron', sans-serif;}
+        
+        .list-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary); font-family: 'Inter', sans-serif; text-transform: uppercase;}
+        .list-item.do i { color: #4ade80; }
+        .list-item.dont i { color: #f87171; }
+        
+        @media (max-width: 768px) {
+            .rights-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-bg"></div>
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <span><i data-feather="crosshair"></i></span>
+            Drive<span class="gradient-text">Legal</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Nexus</a>
+            <a href="ask.html">AI Interface</a>
+            <a href="challan.html">Penalty Calc</a>
+            <a href="rights.html" class="active">Citizen Rights</a>
+            <a href="compliance.html">Protocol</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="text-center mb-8">
+                <div class="badge badge-pink mb-4" style="box-shadow: 0 0 10px rgba(255,42,133,0.5);">
+                    <i data-feather="book-open" style="width: 12px;"></i> CITIZEN PROTOCOL
+                </div>
+                <h1 class="glitch-text mb-2" data-text="KNOW YOUR" style="color: #fff;">KNOW YOUR <span class="gradient-text">RIGHTS</span></h1>
+                <p style="color: var(--text-secondary); font-size: 14px; max-width: 600px; margin: 0 auto; font-family: 'Orbitron', sans-serif;">
+                    UNDERSTAND YOUR LEGAL RIGHTS DURING A TRAFFIC STOP UNDER THE MOTOR VEHICLES ACT.
+                </p>
+            </div>
+
+            <div class="rights-grid">
+                <!-- Right 1 -->
+                <div class="right-card">
+                    <div class="icon-box" style="background: rgba(0,240,255,0.1); color: var(--accent-cyan); border: 1px solid var(--accent-cyan);">
+                        <i data-feather="user-check"></i>
+                    </div>
+                    <h3 class="cyber-font" style="margin-bottom: 12px; font-size: 16px; color: #fff;">1. OFFICER IDENTITY</h3>
+                    <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 16px;">Traffic police must be in uniform with their name buckle clearly visible. If they are in civilian clothes, you can ask for their ID card.</p>
+                    <div>
+                        <div class="list-item do"><i data-feather="check-circle" style="width: 16px;"></i> Ask for the officer's ID if not in uniform.</div>
+                        <div class="list-item dont"><i data-feather="x-circle" style="width: 16px;"></i> Don't surrender documents to an unidentified person.</div>
+                    </div>
+                </div>
+
+                <!-- Right 2 -->
+                <div class="right-card">
+                    <div class="icon-box" style="background: rgba(157,0,255,0.1); color: var(--accent-purple); border: 1px solid var(--accent-purple);">
+                        <i data-feather="file-minus"></i>
+                    </div>
+                    <h3 class="cyber-font" style="margin-bottom: 12px; font-size: 16px; color: #fff;">2. KEY CONFISCATION</h3>
+                    <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 16px;">No police officer (regardless of rank) is allowed to take away your vehicle keys forcefully.</p>
+                    <div>
+                        <div class="list-item do"><i data-feather="check-circle" style="width: 16px;"></i> Politely refuse to hand over keys.</div>
+                        <div class="list-item dont"><i data-feather="x-circle" style="width: 16px;"></i> Don't get into physical altercations. Record a video if necessary.</div>
+                    </div>
+                </div>
+
+                <!-- Right 3 -->
+                <div class="right-card">
+                    <div class="icon-box" style="background: rgba(255,42,133,0.1); color: var(--accent-pink); border: 1px solid var(--accent-pink);">
+                        <i data-feather="credit-card"></i>
+                    </div>
+                    <h3 class="cyber-font" style="margin-bottom: 12px; font-size: 16px; color: #fff;">3. ELECTRONIC CHALLAN</h3>
+                    <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 16px;">Officers must use an e-challan machine or a proper challan book. You cannot be forced to pay bribes or settle fines without an official receipt.</p>
+                    <div>
+                        <div class="list-item do"><i data-feather="check-circle" style="width: 16px;"></i> Insist on a printed or electronic receipt.</div>
+                        <div class="list-item dont"><i data-feather="x-circle" style="width: 16px;"></i> Never pay fine amounts directly in cash without a receipt.</div>
+                    </div>
+                </div>
+
+                <!-- Right 4 -->
+                <div class="right-card">
+                    <div class="icon-box" style="background: rgba(252,238,10,0.1); color: var(--accent-yellow); border: 1px solid var(--accent-yellow);">
+                        <i data-feather="smartphone"></i>
+                    </div>
+                    <h3 class="cyber-font" style="margin-bottom: 12px; font-size: 16px; color: #fff;">4. DIGITAL DOCUMENTS</h3>
+                    <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 16px;">According to the IT Act and MoRTH guidelines, documents stored in DigiLocker or mParivahan are legally equivalent to physical copies.</p>
+                    <div>
+                        <div class="list-item do"><i data-feather="check-circle" style="width: 16px;"></i> Show your DL/RC on DigiLocker/mParivahan.</div>
+                        <div class="list-item dont"><i data-feather="x-circle" style="width: 16px;"></i> Do not hand over your phone to the officer.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="anime-panel mt-4" style="border-color: #f87171; background: rgba(239,68,68,0.05); margin-top: 32px; box-shadow: 0 0 20px rgba(239,68,68,0.2) inset;">
+                <h3 class="cyber-font" style="color: #f87171; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 18px;">
+                    <i data-feather="phone-call"></i> EMERGENCY UPLINK
+                </h3>
+                <p style="color: var(--text-secondary); font-size: 12px; margin-bottom: 16px; font-family: 'Orbitron', sans-serif;">
+                    IF YOU FACE HARASSMENT, FILE A COMPLAINT WITH THE TRAFFIC POLICE GRIEVANCE CELL:
+                </p>
+                <div class="flex gap-4">
+                    <div class="badge badge-red" style="font-size: 14px; padding: 8px 16px;">
+                        <i data-feather="phone"></i> 103 (TRAFFIC)
+                    </div>
+                    <div class="badge badge-red" style="font-size: 14px; padding: 8px 16px;">
+                        <i data-feather="phone"></i> 112 (EMERGENCY)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

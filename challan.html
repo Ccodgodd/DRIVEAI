@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penalty Calc - DriveLegal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .layout-grid { display: grid; grid-template-columns: 1fr 380px; gap: 24px; align-items: start; }
+        .violation-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-radius: 4px; border: 1px solid rgba(0,240,255,0.2); background: rgba(0,0,0,0.5); margin-bottom: 8px; transition: 0.2s; cursor: pointer; }
+        .violation-item:hover { border-color: var(--accent-cyan); background: rgba(0,240,255,0.1); box-shadow: 0 0 10px rgba(0,240,255,0.2) inset;}
+        .violation-item .fine { font-weight: 700; font-size: 15px; color: var(--accent-pink); font-family: 'Orbitron', sans-serif;}
+        .summary-item { display: flex; justify-content: space-between; padding: 10px 12px; background: rgba(255,42,133,0.05); border: 1px solid var(--accent-pink); border-radius: 4px; margin-bottom: 8px; }
+        .remove-btn { background: rgba(255,42,133,0.1); border: 1px solid var(--accent-pink); color: var(--accent-pink); padding: 4px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; }
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent); margin: 20px 0; }
+        
+        @media (max-width: 768px) {
+            .layout-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-bg"></div>
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <span><i data-feather="crosshair"></i></span>
+            Drive<span class="gradient-text">Legal</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Nexus</a>
+            <a href="ask.html">AI Interface</a>
+            <a href="challan.html" class="active">Penalty Calc</a>
+            <a href="rights.html">Citizen Rights</a>
+            <a href="compliance.html">Protocol</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="badge badge-purple mb-4">
+                <i data-feather="file-text" style="width: 12px;"></i> Penalty Calculator
+            </div>
+            <h1 class="glitch-text mb-2" data-text="Calculate" style="color: #fff;">Calculate <span class="gradient-text">Violations</span></h1>
+            <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 40px; font-family: 'Orbitron', sans-serif;">
+                SELECT VIOLATIONS, ENTER VEHICLE ID, AND GENERATE SUMMARY.
+            </p>
+
+            <div class="layout-grid">
+                <!-- Left Column -->
+                <div>
+                    <!-- Vehicle Details -->
+                    <div class="anime-panel mb-8">
+                        <h3 class="flex align-center gap-4 mb-4 cyber-font" style="font-size: 18px; color: var(--accent-cyan);"><i data-feather="truck" style="color: var(--accent-cyan);"></i> VEHICLE DATA</h3>
+                        <div class="grid grid-cols-2">
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block; font-family: 'Orbitron', sans-serif;">VEHICLE ID *</label>
+                                <input type="text" id="vehNum" class="input-field" placeholder="MH01AB1234" style="text-transform: uppercase;">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block; font-family: 'Orbitron', sans-serif;">OPERATOR NAME *</label>
+                                <input type="text" id="drvName" class="input-field" placeholder="NAME">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block; font-family: 'Orbitron', sans-serif;">TIMESTAMP</label>
+                                <input type="date" id="chDate" class="input-field">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block; font-family: 'Orbitron', sans-serif;">COORDINATES</label>
+                                <input type="text" id="chLoc" class="input-field" placeholder="LOCATION">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Violations -->
+                    <div class="anime-panel">
+                        <h3 class="flex align-center gap-4 mb-4 cyber-font" style="font-size: 18px; color: var(--accent-pink);"><i data-feather="alert-circle" style="color: var(--accent-pink);"></i> SELECT INFRACTIONS</h3>
+                        <div class="flex gap-4 mb-4">
+                            <input type="text" id="searchViolations" class="input-field" placeholder="SEARCH DATABASE..." onkeyup="renderViolations()">
+                        </div>
+                        <div id="violationsList" style="max-height: 420px; overflow-y: auto;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <div class="anime-panel" style="position: sticky; top: 88px;">
+                        <h3 class="flex align-center gap-4 mb-4 cyber-font" style="font-size: 18px; color: var(--accent-yellow);"><i data-feather="calculator" style="color: var(--accent-yellow);"></i> SUMMARY LOG</h3>
+                        
+                        <div id="emptySummary" class="text-center" style="padding: 32px 16px;">
+                            <i data-feather="file-text" style="width: 40px; height: 40px; color: var(--text-muted); margin-bottom: 12px;"></i>
+                            <p style="color: var(--text-muted); font-size: 13px; font-family: 'Orbitron', sans-serif;">AWAITING SELECTION</p>
+                        </div>
+
+                        <div id="summaryList" style="display: none; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div id="summaryTotals" style="display: none;">
+                            <div class="divider"></div>
+                            <div class="flex justify-between mb-2">
+                                <span style="color: var(--text-secondary); font-size: 12px; font-family: 'Orbitron', sans-serif;">INFRACTION COUNT</span>
+                                <span id="totalCount" style="font-weight: 600; color: var(--accent-cyan);">0</span>
+                            </div>
+                            <div class="flex justify-between" style="padding: 14px 16px; background: rgba(255,42,133,0.1); border: 1px solid var(--accent-pink); border-radius: 4px; margin-top: 12px;">
+                                <span style="font-weight: 700; font-size: 15px; font-family: 'Orbitron', sans-serif; color: #fff;">TOTAL PENALTY</span>
+                                <span id="totalFineAmt" class="gradient-text" style="font-weight: 800; font-size: 20px;">₹0</span>
+                            </div>
+                            
+                            <button class="cyber-button btn-pink" onclick="generateChallan()" style="width: 100%; justify-content: center; margin-top: 16px;">
+                                <i data-feather="check-circle" style="width: 16px;"></i> GENERATE REPORT
+                            </button>
+                            <button id="downloadBtn" class="cyber-button" onclick="downloadChallan()" style="width: 100%; justify-content: center; margin-top: 10px; display: none;">
+                                <i data-feather="download" style="width: 16px;"></i> DOWNLOAD LOG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/challan.js"></script>
+    <script>
+        document.getElementById('chDate').valueAsDate = new Date();
+        feather.replace();
+    </script>
+</body>
+</html>

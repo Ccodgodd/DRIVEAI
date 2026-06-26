@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveLegal - Cyber AI Traffic Law Assistant</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Feather Icons for lightweight iconography -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="global-bg"></div>
+    <div class="grid-bg"></div>
+    <div class="scanlines"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <span><i data-feather="crosshair"></i></span>
+            Drive<span class="gradient-text">Legal</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Nexus</a>
+            <a href="ask.html">AI Interface</a>
+            <a href="challan.html">Penalty Calc</a>
+            <a href="rights.html">Citizen Rights</a>
+            <a href="compliance.html">Protocol</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container text-center" style="padding-top: 40px;">
+            <div class="orb orb-pink animate-float" style="width: 500px; height: 500px; top: -100px; right: -50px;"></div>
+            <div class="orb orb-blue animate-float" style="width: 400px; height: 400px; bottom: 0; left: -100px; animation-delay: 2s;"></div>
+            
+            <div class="badge badge-pink mb-4" style="box-shadow: 0 0 10px rgba(255,42,133,0.5);">
+                <i data-feather="cpu" style="width: 12px;"></i> NEURAL NETWORK ACTIVE
+            </div>
+            
+            <h1 class="glitch-text" data-text="India's Smartest" style="font-size: clamp(32px, 5vw, 54px); line-height: 1.1; margin-bottom: 10px; color: #fff;">
+                India's Smartest
+            </h1>
+            <h1 style="font-size: clamp(40px, 7vw, 72px); line-height: 1.1; margin-bottom: 24px;">
+                <span class="gradient-text">Traffic Law AI</span>
+            </h1>
+            
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px; font-size: 16px; border-left: 2px solid var(--accent-cyan); padding-left: 15px; text-align: left; background: rgba(0,240,255,0.05);">
+                > INITIATING PROTOCOL...<br>
+                > Instantly query traffic laws, calculate penalties, and understand your legal rights.<br>
+                > AI-powered, real-time, and synchronized with the Motor Vehicles Act 2019.
+            </p>
+            
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="ask.html" class="cyber-button btn-pink">
+                    <i data-feather="terminal" style="width: 18px;"></i> Access AI Terminal
+                </a>
+                <a href="challan.html" class="cyber-button">
+                    <i data-feather="crosshair" style="width: 18px;"></i> Scan Challan
+                </a>
+            </div>
+
+            <!-- Anime Character Display -->
+            <div style="margin: 40px auto; max-width: 400px; position: relative;">
+                <img src="assets/cyber_officer.png" alt="Cyberpunk Officer" style="width: 100%; border-radius: 8px; border: 2px solid var(--accent-pink); box-shadow: 0 0 30px rgba(255,42,133,0.3); filter: contrast(1.1) brightness(1.1);">
+                <div style="position: absolute; bottom: -15px; right: -15px; background: #000; padding: 5px 15px; border: 1px solid var(--accent-cyan); color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: bold;">UNIT_01 : READY</div>
+            </div>
+
+            <div class="grid grid-cols-4 mt-4" style="margin-top: 60px;">
+                <div class="anime-panel text-center">
+                    <i data-feather="database" style="color: var(--accent-cyan); margin-bottom: 8px;"></i>
+                    <h3 class="cyber-font" style="font-size: 24px; color: #fff;">2,400+</h3>
+                    <p style="color: var(--text-muted); font-size: 12px; font-family: 'Orbitron', sans-serif;">DATA NODES</p>
+                </div>
+                <div class="anime-panel text-center">
+                    <i data-feather="alert-octagon" style="color: var(--accent-pink); margin-bottom: 8px;"></i>
+                    <h3 class="cyber-font" style="font-size: 24px; color: #fff;">150+</h3>
+                    <p style="color: var(--text-muted); font-size: 12px; font-family: 'Orbitron', sans-serif;">VIOLATION CODES</p>
+                </div>
+                <div class="anime-panel text-center">
+                    <i data-feather="map" style="color: var(--accent-yellow); margin-bottom: 8px;"></i>
+                    <h3 class="cyber-font" style="font-size: 24px; color: #fff;">28</h3>
+                    <p style="color: var(--text-muted); font-size: 12px; font-family: 'Orbitron', sans-serif;">SECTORS</p>
+                </div>
+                <div class="anime-panel text-center">
+                    <i data-feather="cpu" style="color: var(--accent-purple); margin-bottom: 8px;"></i>
+                    <h3 class="cyber-font" style="font-size: 24px; color: #fff;">GEMINI</h3>
+                    <p style="color: var(--text-muted); font-size: 12px; font-family: 'Orbitron', sans-serif;">AI CORE</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
